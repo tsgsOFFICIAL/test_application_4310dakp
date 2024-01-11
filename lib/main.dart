@@ -3,30 +3,34 @@ import 'package:test_application_4310dakp/imports.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  startTcpConnection();
-
   runApp(const MyApp());
-}
 
-void startTcpConnection() async {
-  RSAKeypair rsaKeypair = RSAKeypair.fromRandom(keySize: 2048);
-  final TcpSocketConnection socketConnection = TcpSocketConnection('10.108.137.171', 8008);
+  try {
+    Socket socket = await Socket.connect('192.168.1.62', 8008);
 
-  if (await socketConnection.canConnect(5000, attempts: 3)) {
-    await socketConnection.connect(
-        5000,
-        (message) => {
-              debugPrint(utf8.decode(base64.decode(message))),
-              // debugPrint(rsaKeypair.privateKey.decrypt()),
-            },
-        attempts: 3);
+    // Generate RSA keys
+    RSAKeypair rsa = RSAKeypair.fromRandom();
 
-    // String message = DateTime.now().millisecondsSinceEpoch.toRadixString(16);
+    // Send the public key to the socket
+    socket.write(rsa.publicKey.toPEM());
 
-    // String encrypted = rsaKeypair.publicKey.encrypt(message);
-    // String decrypted = rsaKeypair.privateKey.decrypt(encrypted);
-    debugPrint(rsaKeypair.publicKey.toFormattedPEM());
-    socketConnection.sendMessage(base64.encode(utf8.encode(rsaKeypair.publicKey.toFormattedPEM())));
+    // Receive the decrypted message from the server
+    Uint8List encryptedBytes = await socket.first;
+    // String decodedMessage = utf8.decode(encryptedBytes, allowMalformed: true);
+
+    // Decrypt the message using the private key
+    String decryptedBytes = rsa.privateKey.decrypt(base64Encode(encryptedBytes));
+
+    // Convert the decrypted bytes to a string
+    // String decryptedMessage = decryptedBytes;
+
+    debugPrint('Received and decrypted message: $decryptedBytes');
+
+    // Close the socket
+    socket.close();
+  } catch (e) {
+    debugPrint('Something went wrong...');
+    debugPrint(e.toString());
   }
 }
 

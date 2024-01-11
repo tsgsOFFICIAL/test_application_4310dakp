@@ -4,7 +4,10 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:crypton/crypton.dart';
 export 'package:provider/provider.dart';
 export 'package:flutter/material.dart';
+export 'dart:typed_data';
 export 'dart:convert';
+export 'dart:io';
+export 'dart:async';
 
 /* INTERNAL IMPORTS */
 export 'package:test_application_4310dakp/widgets/own_floating_action_button.dart';

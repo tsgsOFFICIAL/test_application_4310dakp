@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:test_application_4310dakp/imports.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,8 +31,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        const HomeFuturePage(title: 'V for sejr siden!'),
+                    builder: (context) => const HomeFuturePage(title: 'V for sejr siden!'),
                   ),
                 ),
               },
@@ -47,8 +44,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        const HomeBlocPage(title: 'Plus minus?'),
+                    builder: (context) => const HomeBlocPage(title: 'Plus minus?'),
                   ),
                 ),
               },
@@ -57,8 +53,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            _testAsync(context), //Navigator.pushNamed(context, '/sejr'),
+        onPressed: () => _testAsync(context), //Navigator.pushNamed(context, '/sejr'),
         tooltip: 'Sut den Henry',
         child: const Icon(Icons.live_help),
       ),

@@ -43,6 +43,7 @@ dependencies:
   crypton: ^2.2.1
   pointycastle: ^3.7.3
   socket_io_client: ^2.0.3+1
+  rsa_encrypt: ^2.0.0
 
 dev_dependencies:
   flutter_test:

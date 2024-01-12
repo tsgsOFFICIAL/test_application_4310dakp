@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:test_application_4310dakp/imports.dart';
 
 class LoginPage extends StatefulWidget {

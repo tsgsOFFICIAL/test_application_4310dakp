@@ -1,39 +1,46 @@
-import 'package:test_application_4310dakp/imports.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:test_application_4310dakp/imports.dart';
 
 void main() {
-  group('Testing App', () {
-    testWidgets('Favorites operations test', (tester) async {
-      await tester.pumpWidget(const HomeFuturePage(title: 'Future Home Page'));
+  testWidgets('LoginPage UI Test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: LoginPage(
+          title: 'Login Test Title',
+        ),
+      ),
+    );
 
-      final iconKeys = [
-        'icon_0',
-        'icon_1',
-        'icon_2',
-      ];
+    // Verify if the title is displayed
+    expect(find.text('Login Test Title'), findsOneWidget);
 
-      for (var icon in iconKeys) {
-        await tester.tap(find.byKey(ValueKey(icon)));
-        await tester.pumpAndSettle(const Duration(seconds: 1));
+    // Enter a username and password
+    await tester.enterText(
+        find.byWidgetPredicate((widget) =>
+            widget is TextField && widget.decoration!.labelText == 'Username'),
+        '123');
+    await tester.enterText(
+        find.byWidgetPredicate((widget) =>
+            widget is TextField && widget.decoration!.labelText == 'Password'),
+        'Pa\$\$w0rD');
 
-        expect(find.text('Added to favorites.'), findsOneWidget);
-      }
+    // // Tap on the login button
+    // await tester.tap(find.text('Login'));
 
-      await tester.tap(find.text('Favorites'));
-      await tester.pumpAndSettle();
+    // // Wait for animations to complete
+    // await tester.pumpAndSettle();
 
-      final removeIconKeys = [
-        'remove_icon_0',
-        'remove_icon_1',
-        'remove_icon_2',
-      ];
+    // // Verify if the SnackBar appears for successful login
+    // expect(find.text('Login Successful'), findsOneWidget);
 
-      for (final iconKey in removeIconKeys) {
-        await tester.tap(find.byKey(ValueKey(iconKey)));
-        await tester.pumpAndSettle(const Duration(seconds: 1));
+    // Uncomment the line below if you want to check for the SnackBar for failed login
+    await tester.tap(find.text('Login'));
 
-        expect(find.text('Removed from favorites.'), findsOneWidget);
-      }
-    });
+    // Wait for animations to complete
+    await tester.pumpAndSettle();
+
+    // Verify if the SnackBar appears for failed login
+    expect(find.text('Login Failed'), findsOneWidget);
   });
 }

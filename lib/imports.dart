@@ -1,7 +1,6 @@
 /* EXTERNAL IMPORTS */
 export 'package:tcp_socket_connection/tcp_socket_connection.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
-export 'package:crypton/crypton.dart';
 export 'package:provider/provider.dart';
 export 'package:flutter/material.dart';
 export 'dart:typed_data';

@@ -88,12 +88,20 @@ import 'package:test_application_4310dakp/imports.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  String? token = await getDeviceToken();
+  debugPrint(token);
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  String? token = await getDeviceToken();
-  debugPrint(token);
+  await setupFlutterNotifications();
+
+  FirebaseMessaging.onMessage.listen(showNotification);
+
+  FirebaseMessaging.instance.subscribeToTopic('Cola');
+
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   runApp(const MyApp());
 

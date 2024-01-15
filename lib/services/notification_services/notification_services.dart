@@ -1,1 +1,2 @@
 export 'package:test_application_4310dakp/services/notification_services/foreground_notification_service.dart';
+export 'package:test_application_4310dakp/services/notification_services/background_notification_service.dart';

@@ -1,9 +1,11 @@
 /* EXTERNAL IMPORTS */
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:tcp_socket_connection/tcp_socket_connection.dart';
+export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:permission_handler/permission_handler.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
-export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:flutter/foundation.dart';
 export 'package:provider/provider.dart';
 export 'package:flutter/material.dart';
 export 'firebase_options.dart';

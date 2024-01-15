@@ -44,6 +44,9 @@ dependencies:
   pointycastle: ^3.7.3
   socket_io_client: ^2.0.3+1
   rsa_encrypt: ^2.0.0
+  flutter_local_notifications: ^16.3.0
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
 
 dev_dependencies:
   flutter_test:

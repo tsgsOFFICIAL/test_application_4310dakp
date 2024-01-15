@@ -88,6 +88,13 @@ import 'package:test_application_4310dakp/imports.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  String? token = await getDeviceToken();
+  debugPrint(token);
+
   runApp(const MyApp());
 
   // try {
